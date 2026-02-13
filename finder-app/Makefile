@@ -12,6 +12,7 @@ $(TARGET): $(OBJ)
 %.o: %.c
 	$(CC) -c $< -o $@
 
-.PHONY: clean
 clean:
 	rm -f $(OBJ) $(TARGET)
+
+.PHONY: all clean
