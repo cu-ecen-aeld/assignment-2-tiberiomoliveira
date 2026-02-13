@@ -8,6 +8,7 @@ int main (int argc, char *argv[]) {
 
     if (argc != 3) {
         syslog(LOG_ERR, "Usage: %s <filename> <string>", argv[0]);
+        closelog();
         return 1;
     }
 
@@ -20,6 +21,7 @@ int main (int argc, char *argv[]) {
 
     if (-1 == fd) {
         syslog(LOG_ERR, "Error: File %s could not be created", filename);
+        closelog();
         return 1;
     }
 
@@ -28,6 +30,7 @@ int main (int argc, char *argv[]) {
     if (-1 == bytes_written) {
         syslog(LOG_ERR, "Error: File %s could not be written", filename);
         close(fd);
+        closelog();
         return 1;
     }
 
@@ -35,6 +38,7 @@ int main (int argc, char *argv[]) {
 
     if (-1 == close(fd)) {
         syslog(LOG_ERR, "Error: File %s could not be closed", filename);
+        closelog();
         return 1;
     }
 
